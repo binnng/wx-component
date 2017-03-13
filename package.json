@@ -1,15 +1,10 @@
 {
   "name": "wx-component",
   "scripts": {
-    "build": "./node_modules/.bin/browserify ./src/component.js -o ./wx-component.js",
-    "babel": "./node_modules/.bin/babel --no-babelrc ./src/component.js -o ./wx-component-c.js --presets=es2015",
-    "min": "./node_modules/.bin/uglifyjs ./wx-component.js -m -o ./wx-component.min.js",
-    "dist": "npm run build && npm run min"
+
   },
   "dependencies": {},
   "devDependencies": {
-    "babel-cli": "^6.23.0",
-    "browserify": "^14.1.0",
-    "uglify-js": "^2.8.10"
+    "browserify": "^14.1.0"
   }
 }
