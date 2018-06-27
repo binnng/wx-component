@@ -26,8 +26,8 @@ class WPage {
     this.config = {
       data: {}
     }
-    this.childrens = {}
-    this.childrensEvents = {}
+    this.children = {}
+    this.childrenEvents = {}
 
     let needs = this.needs = origin.components
 
@@ -49,14 +49,14 @@ class WPage {
       this.mergeChildEvents(item, component)
     }
 
-    this.setChildrens()
+    this.setChildren()
     this.mergePageEvent()
 
     return originalPage(this.config)
   }
 
   pushChild(name, component) {
-    this.childrens[name] = component
+    this.children[name] = component
   }
 
   setChildProps(component, props) {
@@ -99,10 +99,10 @@ class WPage {
 
   // 合并组件的事件
   mergeChildEvents(item, component) {
-    let childrensEvents = this.childrensEvents
-    childrensEvents[item] = {}
+    let childrenEvents = this.childrenEvents
+    childrenEvents[item] = {}
     EVNET_LIST.forEach((prop) => {
-      childrensEvents[item][prop] = component.config[prop]
+      childrenEvents[item][prop] = component.config[prop]
     })
   }
 
@@ -112,21 +112,21 @@ class WPage {
     EVNET_LIST.forEach((prop) => {
       that.config[prop] = function() {
         for (let item in that.needs) {
-          let component = that.childrens[item]
+          let component = that.children[item]
           // 给组件注册parent
           if ("onLoad" == prop) {
             component.setParent(this)
           }
-          that.childrensEvents[item][prop].apply(component, arguments)
+          that.childrenEvents[item][prop].apply(component, arguments)
         }
         that.origin[prop] && that.origin[prop].apply(this, arguments)
       }
     })
   }
 
-  // 把组件方法传给`childrens`
-  setChildrens() {
-    this.config.childrens = this.childrens
+  // 把组件方法传给`children`
+  setChildren() {
+    this.config.children = this.children
   }
 
 }
