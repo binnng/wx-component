@@ -143,8 +143,8 @@ Page({
 #### Page依赖组件
 每次组件被依赖，都会实例化(new)一个`Component`，防止被多次依赖不停修改。
 
-#### Page的`childrens`
-每个Page如果依赖组件，都有一个`childrens`属性，组件的集合。
+#### Page的`children`
+每个Page如果依赖组件，都有一个`children`属性，组件的集合。
 
 ```
 Page({
@@ -152,7 +152,7 @@ Page({
     login: {}
   },
   onShow() {
-    console.log(this.childrens) // {login: ....}
+    console.log(this.children) // {login: ....}
   }
 })
 ```
@@ -195,7 +195,7 @@ Page({
     login: {}
   },
   onShow() {
-    this.childrens.login.setData({
+    this.children.login.setData({
       text: "start"
     })
   }
